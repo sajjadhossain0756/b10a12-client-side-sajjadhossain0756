@@ -198,7 +198,8 @@ bg-gray-100 border-2 dark:border-purple-300 dark:bg-gray-700 rounded-lg shadow-l
 
                 type='submit'
                 value="Sign Up"
-                className='btn w-full text-white font-bold bg-gradient-to-r from-teal-400 to-blue-500 hover:from-pink-500 hover:to-orange-500'
+                className='btn w-full text-white font-bold 
+                bg-gradient-to-r from-teal-400 to-blue-500 hover:from-pink-500 hover:to-orange-500'
               />
 
             </div>
