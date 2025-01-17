@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Outlet } from 'react-router-dom'
-import Navbar from '../Shared/Navbar'
+import Navbar from '../Shared/navbar/Navbar'
 import Footer from '../Shared/Footer'
 
 const Main = () => {

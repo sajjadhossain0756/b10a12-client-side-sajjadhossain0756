@@ -1,7 +1,7 @@
 
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../provider/AuthProvider'
 import { useContext } from 'react'
 import loginImg from '../../assets/login.jpg'
@@ -11,6 +11,10 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const { signInUser,signInWithGoogle } = useContext(AuthContext)
     const navigate = useNavigate()
+    const location = useLocation()
+    const from = location?.state?.from?.pathname || '/'
+
+
     const onSubmit = (data) => {
         console.log(data)
         const { email, password } = data;
@@ -26,7 +30,7 @@ const Login = () => {
                     timer: 1500
                 });
 
-                navigate('/')
+                navigate(from)
             })
             .catch(err => {
                 console.log(err.message)
@@ -44,7 +48,7 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate('/')
+                navigate(from)
             })
             .catch(err => {
                 Swal.fire(err.message)

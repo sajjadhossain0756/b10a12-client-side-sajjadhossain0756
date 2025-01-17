@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
 import { Link, NavLink } from 'react-router-dom'
-import { AuthContext } from '../provider/AuthProvider'
-import profileImg from '../assets/profile.png'
+import { AuthContext } from '../../provider/AuthProvider'
+import profileImg from '../../assets/profile.png'
 import Swal from 'sweetalert2'
+import './navbar.module.css'
 
 const Navbar = () => {
     const { user, signOutUser } = useContext(AuthContext)
@@ -26,17 +27,10 @@ const Navbar = () => {
     }
 
     const navItem = <>
-        <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/menu'>Our Menu</NavLink></li>
-        <li><NavLink to='/order/salad'>Order Food</NavLink></li>
-        <li>
-            <Link to='/dashbord/cart'>
-                <button className='btn'>
-                    <FaShoppingCart className='mr-2'></FaShoppingCart>
-                    <div className='badge badge-secondary'></div>
-                </button>
-            </Link>
-        </li>
+        <li><NavLink className='sajjad' to='/'>Home</NavLink></li>
+        <li><NavLink to='/add-article'>Add Article</NavLink></li>
+        <li><NavLink to='/all-articles'>All Articles</NavLink></li>
+        <li><NavLink to='/my-articles'>My Articles</NavLink></li>
     </>
 
     return (
@@ -60,7 +54,7 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                            className="menu menu-sm dropdown-content bg-gradient-to-t from-purple-400 to-teal-400 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                             {navItem}
                         </ul>
                     </div>
