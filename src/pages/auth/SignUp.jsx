@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
-import loginImg from '../../assets/login.jpg'
+import signupImg from '../../assets/signup.jpg'
 import { AuthContext } from '../../provider/AuthProvider'
 import Swal from 'sweetalert2'
 
@@ -38,13 +38,13 @@ const SignUp = () => {
       <Helmet>
         <title>Pulse of the Nation | Signup</title>
       </Helmet>
-      <Link to={`/`}><button className='btn btn-outline my-6 ml-48'>Back To Home</button></Link>
+      <Link to={`/`}><button className='btn btn-outline my-6 lg:ml-48'>Back To Home</button></Link>
       <div className='flex items-center w-full max-w-sm mx-auto overflow-hidden lg:flex-row-reverse
 bg-gray-100 border-2 dark:border-purple-300 dark:bg-gray-700 rounded-lg shadow-lg  lg:max-w-4xl '>
         <div
-          className='hidden lg:block lg:w-1/2 pr-4'
+          className='hidden lg:block lg:w-1/2 pr-4 h-full'
         >
-          <img src={loginImg} alt='loginImg' className='rounded' />
+          <img src={signupImg} alt='loginImg' className='rounded h-[560px] object-cover' />
         </div>
 
         <div className='w-full px-6 py-8 md:px-8 lg:w-1/2'>
@@ -173,27 +173,6 @@ bg-gray-100 border-2 dark:border-purple-300 dark:bg-gray-700 rounded-lg shadow-l
               {errors.password?.type === 'pattern' && <p className='text-red-600'>Password must have one Uppercase,
                 one lowercase,one number and one special characters</p>}
             </div>
-            {/* captcha
-                <div className='mt-4'>
-                    <div className='flex justify-between'>
-                        <label
-                            className='block mb-2 text-sm font-medium dark:text-white text-gray-600 '
-                            htmlFor='loggingPassword'
-                        >
-                            <LoadCanvasTemplate />
-                        </label>
-                    </div>
-
-                    <input
-                        id='loggingPassword'
-                        autoComplete='current-password'
-                        name='password'
-                        ref={captchaRef}
-                        className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
-                        type='text'
-                    />
-                    <button onClick={handleValidateCaptcha} className='btn '>Validate Captcha</button>
-                </div> */}
             <div className='mt-6'>
               <input
 
