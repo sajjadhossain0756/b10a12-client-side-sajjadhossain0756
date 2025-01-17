@@ -9,7 +9,7 @@ import Swal from 'sweetalert2'
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const { signInUser, } = useContext(AuthContext)
+    const { signInUser,signInWithGoogle } = useContext(AuthContext)
     const navigate = useNavigate()
     const onSubmit = (data) => {
         console.log(data)
@@ -21,7 +21,7 @@ const Login = () => {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: "Sucessfully logged In",
+                    title: "You are Sucessfully logged In",
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -30,6 +30,24 @@ const Login = () => {
             })
             .catch(err => {
                 console.log(err.message)
+            })
+    }
+    // signInWithGoogle
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then((result) => {
+                console.log(result.user)
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "You are Sucessfully logged In",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/')
+            })
+            .catch(err => {
+                alert(err.message)
             })
     }
     return (
@@ -77,9 +95,9 @@ bg-gray-100 border-2 dark:border-purple-300 dark:bg-gray-700 rounded-lg shadow-l
                             </svg>
                         </div>
 
-                        {/* <span onClick={handleGoogleSignIn} className='w-5/6 px-4 py-3 font-bold text-center'>
+                        <span onClick={handleGoogleSignIn} className='w-5/6 px-4 py-3 font-bold text-center'>
                             Sign in with Google
-                        </span> */}
+                        </span>
                     </div>
 
                     <div className='flex items-center justify-between mt-4'>

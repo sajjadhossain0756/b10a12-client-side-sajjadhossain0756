@@ -1,14 +1,15 @@
 import React, { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import signupImg from '../../assets/signup.jpg'
 import { AuthContext } from '../../provider/AuthProvider'
 import Swal from 'sweetalert2'
 
 const SignUp = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
-  const {createUser} = useContext(AuthContext)
+  const { createUser,signInWithGoogle } = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const onSubmit = (data) => {
     console.log(data)
@@ -21,18 +22,37 @@ const SignUp = () => {
       .then(data => {
         console.log(data.user)
         Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: "Sucessfully Created",
-                  showConfirmButton: false,
-                  timer: 1500
-                });
-        
+          position: "top-end",
+          icon: "success",
+          title: "You are Sucessfully Sign Up",
+          showConfirmButton: false,
+          timer: 1500
+        });
+
       })
       .catch(err => {
         console.log(err.message)
       })
   }
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        console.log(result.user)
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "You are Sucessfully logged In",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        navigate('/')
+      })
+      .catch(err => {
+        alert(err.message)
+      })
+  }
+
   return (
     <div>
       <Helmet>
@@ -78,7 +98,7 @@ bg-gray-100 border-2 dark:border-purple-300 dark:bg-gray-700 rounded-lg shadow-l
               </svg>
             </div>
 
-            <span className='w-5/6 px-4 py-3 font-bold text-center'>
+            <span onClick={handleGoogleSignIn} className='w-5/6 px-4 py-3 font-bold text-center'>
               Sign up with Google
             </span>
           </div>
