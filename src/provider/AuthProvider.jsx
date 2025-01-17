@@ -35,7 +35,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true)
     return signInWithPopup(auth, provider)
   }
-  
+
   // find out current user with firebase
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -52,7 +52,8 @@ const AuthProvider = ({ children }) => {
     createUser,
     signInUser,
     signOutUser,
-    signInWithGoogle
+    signInWithGoogle,
+    loading
   }
   return (
     <AuthContext.Provider value={authInfo}>
