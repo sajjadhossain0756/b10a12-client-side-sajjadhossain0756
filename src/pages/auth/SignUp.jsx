@@ -49,7 +49,7 @@ const SignUp = () => {
         navigate('/')
       })
       .catch(err => {
-        alert(err.message)
+        Swal.fire(err.message)
       })
   }
 
@@ -58,7 +58,7 @@ const SignUp = () => {
       <Helmet>
         <title>Pulse of the Nation | Signup</title>
       </Helmet>
-      <Link to={`/`}><button className='btn btn-outline my-6 lg:ml-48'>Back To Home</button></Link>
+      <Link to={`/`}><button className='btn btn-outline my-4 lg:ml-32'>Back To Home</button></Link>
       <div className='flex items-center w-full max-w-sm mx-auto overflow-hidden lg:flex-row-reverse
 bg-gray-100 border-2 dark:border-purple-300 dark:bg-gray-700 rounded-lg shadow-lg  lg:max-w-4xl '>
         <div

@@ -47,7 +47,7 @@ const Login = () => {
                 navigate('/')
             })
             .catch(err => {
-                alert(err.message)
+                Swal.fire(err.message)
             })
     }
     return (
@@ -55,7 +55,7 @@ const Login = () => {
             <Helmet>
                 <title>Bistro Boss | Login</title>
             </Helmet>
-            <Link to={`/`}><button className='btn btn-outline my-6 lg:ml-48'>Back To Home</button></Link>
+            <Link to={`/`}><button className='btn btn-outline my-6 lg:ml-32'>Back To Home</button></Link>
             <div className='flex items-center w-full max-w-sm mx-auto overflow-hidden lg:flex-row-reverse
 bg-gray-100 border-2 dark:border-purple-300 dark:bg-gray-700 rounded-lg shadow-lg  lg:max-w-4xl p-5'>
                 <div
@@ -67,7 +67,7 @@ bg-gray-100 border-2 dark:border-purple-300 dark:bg-gray-700 rounded-lg shadow-l
                 <div className='w-full px-6 py-8 md:px-8 lg:w-1/2'>
 
                     <p className='mt-3 text-xl text-center dark:text-white text-gray-600 '>
-                        Welcome back!
+                        Register 
                     </p>
 
                     <div

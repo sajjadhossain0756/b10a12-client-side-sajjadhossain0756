@@ -3,9 +3,27 @@ import { FaShoppingCart } from 'react-icons/fa'
 import { Link, NavLink } from 'react-router-dom'
 import { AuthContext } from '../provider/AuthProvider'
 import profileImg from '../assets/profile.png'
+import Swal from 'sweetalert2'
 
 const Navbar = () => {
-    const { user} = useContext(AuthContext)
+    const { user, signOutUser } = useContext(AuthContext)
+
+    // sign out user with firebase
+    const handleSignOut = () => {
+        signOutUser()
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "You are Sucessfully logged Out",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(err => {
+                Swal.fire(err.message)
+            })
+    }
 
     const navItem = <>
         <li><NavLink to='/'>Home</NavLink></li>
@@ -19,19 +37,11 @@ const Navbar = () => {
                 </button>
             </Link>
         </li>
-
-        {user ?
-            <>
-                <li><Link >Logout</Link></li>
-            </> :
-            <>
-                <li><NavLink to='/login'>Login</NavLink></li>
-            </>}
     </>
 
     return (
         <div className=''>
-            <div className="navbar fixed max-w-6xl bg-gradient-to-r from-teal-400 to-blue-500 text-white">
+            <div className="navbar max-w-6xl bg-gradient-to-r from-teal-400 to-blue-500 text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -63,11 +73,14 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
 
-                    {user && user ? <>
-                        <img src={user && user?.photoURL || profileImg} alt="profile" className='h-10 w-10 rounded-full' />
-                        <li><Link ><button className='btn'>Logout</button></Link></li>
-                    </>: <></>}
-                    
+                    {user && user ? <div className='flex items-center gap-2'>
+                        <img src={user && user?.photoURL || profileImg} alt="profile" className='h-12 w-12 rounded-full' />
+                        <Link ><button onClick={handleSignOut} className='btn text-white bg-gradient-to-l hover:from-purple-500 hover:to-pink-500 from-teal-500 to-orange-500'>Logout</button></Link>
+                    </div> : <div className='flex items-center gap-2'>
+                        <Link to='/login'><button className='btn text-white bg-gradient-to-l from-purple-500 to-pink-500 hover:from-teal-500 hover:to-orange-500'>Login</button></Link>
+                        <Link to='/signup'><button className='btn text-white bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 from-teal-500 to-orange-500'>Register</button></Link>
+                    </div>}
+
                 </div>
             </div>
         </div>
