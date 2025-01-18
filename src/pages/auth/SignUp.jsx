@@ -33,7 +33,7 @@ const SignUp = () => {
       email
     }
     createUser(email, password)
-      .then(data => {
+      .then(data2 => {
         updateUserProfile(name, photo)
           .then(() => {
             Swal.fire({
@@ -47,16 +47,22 @@ const SignUp = () => {
           .catch(err => {
             console.log(err.message)
           })
+        // save user in database
+        axiosPublic.post(`/all_users`, userInfo)
+          .then(res2 => {
+            console.log(res2.data)
+            if (res2.data.insertedId) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "You are Sucessfully Registered",
+                showConfirmButton: false,
+                timer: 1500
+              });
 
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "You are Sucessfully registered",
-          showConfirmButton: false,
-          timer: 1500
-        });
-        navigate('/')
-
+              navigate('/')
+            }
+          })
       })
       .catch(err => {
         console.log(err.message)
