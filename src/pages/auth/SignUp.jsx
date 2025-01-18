@@ -13,11 +13,11 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const SignUp = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
-  const { createUser, signInWithGoogle } = useContext(AuthContext)
+  const { createUser, signInWithGoogle, updateUserProfile } = useContext(AuthContext)
   const navigate = useNavigate()
   const axiosPublic = useAxiosPublic()
 
-  const onSubmit = async(data) => {
+  const onSubmit = async (data) => {
     // upload image to imgbb and then get an url
     const imageFile = { image: data.photo[0] }
     const res = await axiosPublic.post(image_hosting_api, imageFile, {
@@ -25,22 +25,37 @@ const SignUp = () => {
         'content-type': 'multipart/form-data'
       }
     })
-    const { email, password, name, photo } = data;
+    const { email, password, name } = data;
+    const photo = res.data?.data?.display_url;
     const userInfo = {
       name,
-      photo: res.data?.data?.display_url,
+      photo,
       email
     }
     createUser(email, password)
       .then(data => {
-        console.log(data.user)
+        updateUserProfile(name, photo)
+          .then(() => {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Your info successfully updated",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          })
+          .catch(err => {
+            console.log(err.message)
+          })
+
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "You are Sucessfully Sign Up",
+          title: "You are Sucessfully registered",
           showConfirmButton: false,
           timer: 1500
         });
+        navigate('/')
 
       })
       .catch(err => {
