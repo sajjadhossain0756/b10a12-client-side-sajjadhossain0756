@@ -3,6 +3,8 @@ import { AuthContext } from '../../provider/AuthProvider'
 import Select from 'react-select';
 import { Controller, useForm } from 'react-hook-form';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { Helmet } from 'react-helmet-async';
+import Swal from 'sweetalert2';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -15,35 +17,55 @@ const options = [
 
 const AddArticle = () => {
   const { user } = useContext(AuthContext)
-  const { register, handleSubmit,control, formState: { errors } } = useForm()
+  const { register, handleSubmit, control, reset, formState: { errors } } = useForm()
   const axiosPublic = useAxiosPublic()
 
   const onSubmit = async (data) => {
-    console.log(data)
-    console.log(data.tags)
+
     // upload image to imgbb and then get an url
-    const imageFile = {image: data.photo[0]}
+    const imageFile = { image: data.photo[0] }
     const res = await axiosPublic.post(image_hosting_api, imageFile, {
-      headers:{
+      headers: {
         'content-type': 'multipart/form-data'
       }
     })
     console.log(res.data)
-    if(res.data.success){
-    const newsInfo = {
-          title: data.title,
-          image: res.data.data.display_url,
-          category: data.category,
-          description: data.description,
-          tags: data.tags
-       }
+    // const status = 'pending'
+    if (res.data.success) {
+      const newsInfo = {
+        title: data.title,
+        image: res.data?.data?.display_url,
+        category: data.category,
+        description: data.description,
+        tags: data.tags,
+        status: 'pending'
+      }
+      console.log(newsInfo)
+      const articleData = await axiosPublic.post(`/all_articles`, newsInfo)
+        .then(articleData => {
+          console.log(articleData.data)
+          if (articleData.data.insertedId) {
+            reset()
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Sucessfully Articale Added",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+        })
     }
+
 
   }
 
 
   return (
     <div className='flex justify-center items-center  min-h-[calc(100vh-306px)] my-12'>
+      <Helmet>
+        <title>Pulse of the Nation | Add Article</title>
+      </Helmet>
       <section className=' p-2 md:p-6 mx-auto w-[850px] bg-gray-600 text-white rounded-md shadow-md '>
         <h2 className='text-4xl text-center font-bold text-white  capitalize '>
           Post a New Job
@@ -99,17 +121,6 @@ const AddArticle = () => {
             </div>
           </div>
           {/* news tags */}
-          {/* <div className='mt-6 rounded'>
-            <Select
-              isMulti
-              name="tags"
-              {...register("tags", { required: true })}
-              options={options}
-              className=" text-black rounded"
-              classNamePrefix="select"
-              placeholder="select tag name"
-            />
-          </div> */}
           <div className='mt-6 rounded'>
             <Controller
               name="tags"

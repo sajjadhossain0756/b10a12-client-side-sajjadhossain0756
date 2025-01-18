@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const axiosPublic = axios.create({
-    baseURL: 'http://localhost:6001'
+    baseURL: 'http://localhost:7003'
 })
 
 const useAxiosPublic = () => {
