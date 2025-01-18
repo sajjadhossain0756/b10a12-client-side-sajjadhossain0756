@@ -10,8 +10,8 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'sports', label: 'sports' },
+  { value: 'entertainment', label: 'entertainment' },
   { value: 'vanilla', label: 'Vanilla' }
 ]
 
@@ -59,7 +59,7 @@ const AddArticle = () => {
 
 
   }
-
+  const array = ['web design', 'grapic design', 'digital marketin']
 
   return (
     <div className='flex justify-center items-center  min-h-[calc(100vh-306px)] my-12'>
@@ -114,9 +114,13 @@ const AddArticle = () => {
                 className='border bg-white text-gray-700 p-2 rounded-md'
               >
                 <option disabled value='default'>Select A Category</option>
-                <option value='Web Development'>Web Development</option>
+                { array.map((item,indx)=>{
+                  return <option key={indx} value={item}>{item}</option>
+                })}
+                {/* <option value='Web Development'>Web Development</option>
                 <option value='Graphics Design'>Graphics Design</option>
                 <option value='Digital Marketing'>Digital Marketing</option>
+                 */}
               </select>
             </div>
           </div>

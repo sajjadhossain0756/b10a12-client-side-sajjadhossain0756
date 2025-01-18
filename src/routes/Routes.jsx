@@ -8,13 +8,16 @@ import AllArticles from '../pages/allArticles/AllArticles'
 import MyArticles from '../pages/myArticles/MyArticles'
 import AddArticle from '../pages/addArticle/AddArticle'
 import PrivateRoute from './PrivateRoute'
+import Dashbord from '../pages/dashbord/Dashbord'
+import AllUsers from '../pages/dashbord/AllUsers'
+import Statistics from '../pages/dashbord/Statistics'
 
 export const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
         errorElement: <Error></Error>,
-        children:[
+        children: [
             {
                 path: '/',
                 element: <Home></Home>
@@ -30,6 +33,20 @@ export const router = createBrowserRouter([
             {
                 path: '/my-articles',
                 element: <MyArticles></MyArticles>
+            },
+            {
+                path: '/dashboard',
+                element: <Dashbord></Dashbord>,
+                children: [
+                    {
+                        path: '',
+                        element: <Statistics></Statistics>,
+                    },
+                    {
+                        path: 'all-users',
+                        element: <AllUsers></AllUsers>,
+                    }
+                ]
             },
             {
                 path: '/signup',
