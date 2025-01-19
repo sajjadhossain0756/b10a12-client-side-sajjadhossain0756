@@ -1,9 +1,12 @@
 
-import { FaAddressCard,FaBook,FaHome, FaList,FaUser,FaUtensils } from 'react-icons/fa'
+import { FaAddressCard,FaBook,FaHome, FaList,FaUser} from 'react-icons/fa'
 import { NavLink, Outlet } from 'react-router-dom'
+import useAdmin from '../../hooks/useAdmin';
 
 const Dashbord = () => {
-    const isAdmin = true;
+    const [isAdmin] = useAdmin()
+    console.log(isAdmin)
+    
     return (
         <div className='flex w-full gap-4 my-2'>
             <div className='w-64 bg-orange-400'>

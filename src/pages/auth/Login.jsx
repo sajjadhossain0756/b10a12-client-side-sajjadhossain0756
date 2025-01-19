@@ -2,15 +2,14 @@
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../../provider/AuthProvider'
-import { useContext } from 'react'
 import loginImg from '../../assets/login.jpg'
 import Swal from 'sweetalert2'
 import useAxiosPublic from '../../hooks/useAxiosPublic'
+import useAuth from '../../hooks/useAuth'
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const { signInUser, signInWithGoogle } = useContext(AuthContext)
+    const { signInUser, signInWithGoogle } = useAuth()
     const axiosPublic = useAxiosPublic()
     const navigate = useNavigate()
     const location = useLocation()
