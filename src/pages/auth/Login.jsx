@@ -6,10 +6,12 @@ import { AuthContext } from '../../provider/AuthProvider'
 import { useContext } from 'react'
 import loginImg from '../../assets/login.jpg'
 import Swal from 'sweetalert2'
+import useAxiosPublic from '../../hooks/useAxiosPublic'
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const { signInUser,signInWithGoogle } = useContext(AuthContext)
+    const { signInUser, signInWithGoogle } = useContext(AuthContext)
+    const axiosPublic = useAxiosPublic()
     const navigate = useNavigate()
     const location = useLocation()
     const from = location?.state?.from?.pathname || '/'
@@ -41,14 +43,25 @@ const Login = () => {
         signInWithGoogle()
             .then((result) => {
                 console.log(result.user)
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "You are Sucessfully logged In",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                navigate(from)
+                const userInfo = {
+                    email: result.user?.email,
+                    name: result.user?.displayName,
+                    photo: result.user?.photoURL
+                }
+                axiosPublic.post('/all_users', userInfo)
+                    .then(res => {
+                        console.log(res.data)
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "You are Sucessfully logged In",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            navigate(from)
+                        
+                    })
+
             })
             .catch(err => {
                 Swal.fire(err.message)
@@ -71,7 +84,7 @@ bg-gray-100 border-2 dark:border-purple-300 dark:bg-gray-700 rounded-lg shadow-l
                 <div className='w-full px-6 py-8 md:px-8 lg:w-1/2'>
 
                     <p className='mt-3 text-xl text-center dark:text-white text-gray-600 '>
-                        Register 
+                        Register
                     </p>
 
                     <div
