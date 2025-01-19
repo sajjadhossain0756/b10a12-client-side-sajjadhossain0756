@@ -5,13 +5,30 @@ import useAxiosSecure from '../../hooks/useAxiosSecure'
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure()
 
-  const { data: users = [] } = useQuery({
+  const { data: users = [],refetch } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
       const res = await axiosSecure.get('all_users');
       return res.data;
     }
   })
+
+  // make user to admin
+  const handleMakeAdmin = (user) => {
+    axiosSecure.patch(`/all_users/admin/${user._id}`)
+      .then(res => {
+        if (res.data.modifiedCount > 0) {
+          refetch()
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${user.name} as an admin successfully`,
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+      })
+  }
   return (
     <div>
       <h2 className='text-center text-3xl font-semibold'>AllUsers: {users.length}</h2>
