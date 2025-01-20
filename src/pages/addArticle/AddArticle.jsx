@@ -5,6 +5,8 @@ import { Controller, useForm } from 'react-hook-form';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
+import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -19,6 +21,7 @@ const AddArticle = () => {
   const { user } = useContext(AuthContext)
   const { register, handleSubmit, control, reset, formState: { errors } } = useForm()
   const axiosPublic = useAxiosPublic()
+  const axiosSecure = useAxiosSecure()
 
   const onSubmit = async (data) => {
 
@@ -34,11 +37,15 @@ const AddArticle = () => {
     if (res.data.success) {
       const newsInfo = {
         title: data.title,
+        authorName: user?.displayName,
+        authorEmail: user?.email,
+        authorPhoto: user?.photoURL,
         image: res.data?.data?.display_url,
         category: data.category,
         description: data.description,
         tags: data.tags,
-        status: 'pending'
+        status: 'pending',
+        postedDate: new Date().toISOString()
       }
       console.log(newsInfo)
       const articleData = await axiosPublic.post(`/all_articles`, newsInfo)
@@ -59,7 +66,13 @@ const AddArticle = () => {
 
 
   }
-  const array = ['web design', 'grapic design', 'digital marketin']
+  const { data: publisher = []} = useQuery({
+    queryKey: ['publisher'],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/publisher`)
+      return res.data;
+    }
+  })
 
   return (
     <div className='flex justify-center items-center  min-h-[calc(100vh-306px)] my-12'>
@@ -114,8 +127,8 @@ const AddArticle = () => {
                 className='border bg-white text-gray-700 p-2 rounded-md'
               >
                 <option disabled value='default'>Select A Category</option>
-                { array.map((item,indx)=>{
-                  return <option key={indx} value={item}>{item}</option>
+                {publisher.map((item, indx) => {
+                  return <option key={indx} value={item.publisher}>{item.publisher}</option>
                 })}
                 {/* <option value='Web Development'>Web Development</option>
                 <option value='Graphics Design'>Graphics Design</option>

@@ -10,7 +10,7 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const AddPublisher = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, reset, formState: { errors } } = useForm()
     const axiosPublic = useAxiosPublic()
     const axiosSecure = useAxiosSecure()
 
@@ -35,6 +35,7 @@ const AddPublisher = () => {
         axiosSecure.post(`/publisher`, userInfo)
                   .then(res2 => {
                     console.log(res2.data)
+                    reset()
                     if (res2.data.insertedId) {
                       Swal.fire({
                         position: "top-end",
