@@ -40,6 +40,22 @@ const AllArticle = () => {
         }
       })
   }
+  // make premium article
+  const handlePremiumArticle = (article) => {
+    axiosSecure.patch(`/all_articles/premium/${article._id}`)
+      .then(res => {
+        if (res.data.modifiedCount > 0) {
+          refetch()
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${article?.title} has been Premium`,
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+      })
+  }
   return (
     <div>
       <h2 className='text-center text-3xl font-semibold'>All Articles: {articleData?.length}</h2>
@@ -73,15 +89,9 @@ const AllArticle = () => {
                 <td>
                   <button onClick={() => { handleApproveArticle(article) }} className='border p-1 bg-green-400 w-24'>Approve</button>
                   <button onClick={() => { handleDeclineArticle(article) }} className='border p-1 bg-red-400 w-24'>Decline</button>
-                  <button className='border p-1 bg-green-400 w-24'>Premium</button>
+                  <button onClick={() => { handlePremiumArticle(article) }} className='border p-1 bg-green-400 w-24'>Premium</button>
                   <button className='border p-1 bg-red-400 w-24'>Delete</button>
                 </td>
-                {/* <td>
-                  {user.role === 'admin' ? 'Admin' : <button onClick={() => handleMakeAdmin(user)} className='btn bg-orange-400 text-white' >
-                    Make Admin
-                  </button>}
-
-                </td> */}
               </tr>
             })}
           </tbody>
