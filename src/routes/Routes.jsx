@@ -11,6 +11,9 @@ import PrivateRoute from './PrivateRoute'
 import Dashbord from '../pages/dashbord/Dashbord'
 import AllUsers from '../pages/dashbord/AllUsers'
 import Statistics from '../pages/dashbord/Statistics'
+import AllArticle from '../pages/dashbord/AllArticle'
+import AddPublisher from '../pages/dashbord/AddPublisher'
+import AdminRoute from './AdminRoute'
 
 export const router = createBrowserRouter([
     {
@@ -44,7 +47,15 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: 'all-users',
-                        element: <AllUsers></AllUsers>,
+                        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
+                    },
+                    {
+                        path: 'all-articles',
+                        element: <AdminRoute><AllArticle></AllArticle></AdminRoute>,
+                    },
+                    {
+                        path: 'add-publisher',
+                        element: <AdminRoute><AddPublisher></AddPublisher></AdminRoute>,
                     }
                 ]
             },

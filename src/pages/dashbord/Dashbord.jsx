@@ -6,7 +6,7 @@ import useAdmin from '../../hooks/useAdmin';
 const Dashbord = () => {
     const [isAdmin] = useAdmin()
     console.log(isAdmin)
-    
+
     return (
         <div className='flex w-full gap-4 my-2'>
             <div className='w-64 bg-orange-400'>
@@ -16,11 +16,11 @@ const Dashbord = () => {
                             <FaUser></FaUser>
                             All Users
                         </NavLink></li>
-                        <li><NavLink to='/dashbord/all-articles'>
+                        <li><NavLink to='/dashboard/all-articles'>
                             <FaBook></FaBook>
                             All Articles
                         </NavLink></li>
-                        <li><NavLink to='/dashbord/add-publisher'>
+                        <li><NavLink to='/dashboard/add-publisher'>
                             <FaList></FaList>
                             Add Publisher
                         </NavLink></li>

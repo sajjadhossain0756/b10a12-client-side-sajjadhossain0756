@@ -5,9 +5,11 @@ import { AuthContext } from '../../provider/AuthProvider'
 import profileImg from '../../assets/profile.png'
 import Swal from 'sweetalert2'
 import './navbar.module.css'
+import useAdmin from '../../hooks/useAdmin'
 
 const Navbar = () => {
     const { user, signOutUser } = useContext(AuthContext)
+    const [isAdmin] = useAdmin()
 
     // sign out user with firebase
     const handleSignOut = () => {
@@ -31,7 +33,7 @@ const Navbar = () => {
         <li><NavLink to='/add-article'>Add Article</NavLink></li>
         <li><NavLink to='/all-articles'>All Articles</NavLink></li>
         <li><NavLink to='/my-articles'>My Articles</NavLink></li>
-        <li><NavLink to='/dashboard'>Dashbord</NavLink></li>
+        {isAdmin && <li><NavLink to='/dashboard'>Dashbord</NavLink></li>}
     </>
 
     return (
