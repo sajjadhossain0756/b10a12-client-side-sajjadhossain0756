@@ -1,10 +1,29 @@
 import React from 'react'
 import useArticleData from '../../hooks/useArticleData'
 import { format } from "date-fns";
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const AllArticle = () => {
-  const [articleData] = useArticleData()
+  const [articleData,refetch] = useArticleData()
+  const axiosSecure = useAxiosSecure()
 
+  // approve article
+  const handleApproveArticle = (article) =>{
+    axiosSecure.patch(`/all_articles/approve/${article._id}`)
+      .then(res => {
+        if (res.data.modifiedCount > 0) {
+          refetch()
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${article?.title} is Approved`,
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+      })
+  }
   return (
     <div>
       <h2 className='text-center text-3xl font-semibold'>All Articles: {articleData?.length}</h2>
@@ -36,7 +55,7 @@ const AllArticle = () => {
                 <td>{format(new Date(article?.postedDate),"PPP p")}</td>
                 <td>{article?.status}</td>
                 <td>
-                    <button className='border p-1 bg-green-400 w-24'>Approve</button>
+                    <button onClick={()=>{handleApproveArticle(article)}} className='border p-1 bg-green-400 w-24'>Approve</button>
                     <button className='border p-1 bg-red-400 w-24'>Decline</button>
                     <button className='border p-1 bg-green-400 w-24'>Premium</button>
                     <button className='border p-1 bg-red-400 w-24'>Delete</button>
