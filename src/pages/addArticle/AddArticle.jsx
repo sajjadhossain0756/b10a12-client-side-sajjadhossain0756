@@ -45,6 +45,7 @@ const AddArticle = () => {
         description: data.description,
         tags: data.tags,
         status: 'pending',
+        isPremium: false,
         postedDate: new Date().toISOString()
       }
       console.log(newsInfo)

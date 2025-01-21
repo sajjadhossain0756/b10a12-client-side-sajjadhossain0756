@@ -59,46 +59,33 @@ const AllArticle = () => {
       })
   }
 
-    // make premium article
-    const handleDeleteArticle = (article) => {
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
+  // make premium article
+  const handleDeleteArticle = (article) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
     }).then((result) => {
-        axiosSecure.delete(`/all_articles/${article?._id}`)
-            .then(res => {
-                console.log(res.data)
-                if (res.data.deletedCount > 0) {
-                    if (result.isConfirmed) {
-                        Swal.fire({
-                            title: "Deleted!",
-                            text: "Your file has been deleted.",
-                            icon: "success"
-                        });
-                    }
-                    refetch()
-                }
-            })
+      axiosSecure.delete(`/all_articles/${article?._id}`)
+        .then(res => {
+          console.log(res.data)
+          if (res.data.deletedCount > 0) {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+            }
+            refetch()
+          }
+        })
     });
-      // axiosSecure.patch(`/all_articles/${article._id}`)
-      //   .then(res => {
-      //     if (res.data.modifiedCount > 0) {
-      //       refetch()
-      //       Swal.fire({
-      //         position: "top-end",
-      //         icon: "success",
-      //         title: `${article?.title} has been Deleted`,
-      //         showConfirmButton: false,
-      //         timer: 1500
-      //       });
-      //     }
-      //   })
-    }
+  }
   return (
     <div>
       <h2 className='text-center text-3xl font-semibold'>All Articles: {articleData?.length}</h2>
@@ -125,7 +112,7 @@ const AllArticle = () => {
                 <td><img src={article?.authorPhoto} alt="profile" className='h-12 w-12 rounded-full' /></td>
                 <td>{article?.authorName}</td>
                 <td>{article?.authorEmail}</td>
-                <td>{article?.title.substring(1, 30)}....</td>
+                <td>{article?.title.substring(0, 30)}....</td>
                 <td>{article?.category}</td>
                 <td>{format(new Date(article?.postedDate), "PPP p")}</td>
                 <td>{article?.status}</td>
