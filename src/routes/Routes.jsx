@@ -14,6 +14,7 @@ import Statistics from '../pages/dashbord/Statistics'
 import AllArticle from '../pages/dashbord/AllArticle'
 import AddPublisher from '../pages/dashbord/AddPublisher'
 import AdminRoute from './AdminRoute'
+import ArticlesDetail from '../components/ArticlesDetail'
 
 export const router = createBrowserRouter([
     {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
             {
                 path: '/all-articles',
                 element: <AllArticles></AllArticles>
+            },
+            {
+                path: '/all-articles/:id',
+                element: <ArticlesDetail></ArticlesDetail>
             },
             {
                 path: '/my-articles',

@@ -59,7 +59,7 @@ const AllArticle = () => {
       })
   }
 
-  // make premium article
+  // delete article from db
   const handleDeleteArticle = (article) => {
     Swal.fire({
       title: "Are you sure?",
