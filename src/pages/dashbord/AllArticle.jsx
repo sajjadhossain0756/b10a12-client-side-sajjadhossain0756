@@ -70,22 +70,29 @@ const AllArticle = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
-      axiosSecure.delete(`/all_articles/${article?._id}`)
-        .then(res => {
-          console.log(res.data)
-          if (res.data.deletedCount > 0) {
-            if (result.isConfirmed) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
-            }
-            refetch()
-          }
-        })
+      if (result.isConfirmed) {
+        try {
+          axiosSecure.delete(`/all_articles/${article?._id}`)
+            .then(res => {
+              console.log(res.data)
+              if (res.data.deletedCount > 0) {
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success"
+                });
+                refetch()
+              }
+            })
+        } catch (err) {
+          Swal.fire('Error', err.message)
+        }
+      }
+
     });
   }
+
+  
   return (
     <div>
       <h2 className='text-center text-3xl font-semibold'>All Articles: {articleData?.length}</h2>
