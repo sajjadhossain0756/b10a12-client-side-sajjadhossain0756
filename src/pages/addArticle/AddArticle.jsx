@@ -131,10 +131,6 @@ const AddArticle = () => {
                 {publisher.map((item, indx) => {
                   return <option key={indx} value={item.publisher}>{item.publisher}</option>
                 })}
-                {/* <option value='Web Development'>Web Development</option>
-                <option value='Graphics Design'>Graphics Design</option>
-                <option value='Digital Marketing'>Digital Marketing</option>
-                 */}
               </select>
             </div>
           </div>
@@ -173,7 +169,7 @@ const AddArticle = () => {
             <input
 
               type='submit'
-              value="add"
+              value="Add Article"
               className='btn w-full text-white font-bold 
                 bg-gradient-to-r from-teal-400 to-blue-500 hover:from-pink-500 hover:to-orange-500'
             />

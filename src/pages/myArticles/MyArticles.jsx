@@ -12,7 +12,7 @@ const MyArticles = () => {
 
   const filterByEmail = articleData && articleData.filter(article => article?.authorEmail === user?.email)
   console.log(filterByEmail)
-  // const {_id,title,status,isPremium} = filterByEmail;
+ 
 
   // delete article from db
   const handleDeleteArticle = (article) => {
@@ -73,8 +73,8 @@ const MyArticles = () => {
                 <td>
                   <Link to={`/all-articles/${article?._id}`}><button className='border p-1 
                   bg-orange-400 w-24'>Details</button></Link>
-                  <button className='border p-1 
-                  bg-green-400 w-24'>Update</button>
+                  <Link to={`/my-articles/update/${article?._id}`}><button className='border p-1 
+                  bg-green-400 w-24'>Update</button></Link>
                   <button onClick={() => { handleDeleteArticle(article) }} className='border p-1 
                   bg-red-400 w-24'>Delete</button>
                 </td>

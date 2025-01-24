@@ -7,7 +7,7 @@ const ArticlesDetail = () => {
     const [articleData] = useArticleData()
 
     const filterArticle = articleData?.find(article => article._id === id) || []
-    console.log(filterArticle);
+    
     const { title, image, description, category } = filterArticle
     return (
         <div className="hero">
