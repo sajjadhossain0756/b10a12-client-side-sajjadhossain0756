@@ -16,6 +16,7 @@ import AddPublisher from '../pages/dashbord/AddPublisher'
 import AdminRoute from './AdminRoute'
 import ArticlesDetail from '../components/ArticlesDetail'
 import UpdateArticles from '../components/UpdateArticles'
+import MyProfile from '../pages/myProfile/MyProfile'
 
 export const router = createBrowserRouter([
     {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
             {
                 path: '/my-articles',
                 element: <MyArticles></MyArticles>
+            },
+            {
+                path: '/my-profile',
+                element: <MyProfile></MyProfile>
             },
             {
                 path: '/dashboard',

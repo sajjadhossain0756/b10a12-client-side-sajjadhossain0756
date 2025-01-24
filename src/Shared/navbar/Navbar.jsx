@@ -71,7 +71,11 @@ const Navbar = () => {
                 <div className="navbar-end">
 
                     {user && user ? <div className='flex items-center gap-2'>
-                        <img src={user && user?.photoURL || profileImg} alt="profile" className='h-12 w-12 rounded-full' />
+                        <Link to={`/my-profile`}>
+                            <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
+                                <img src={user && user?.photoURL || profileImg} alt="profile" className='h-12 w-12 rounded-full' />
+                            </div>
+                        </Link>
                         <Link ><button onClick={handleSignOut} className='btn text-white bg-gradient-to-l hover:from-purple-500 hover:to-pink-500 from-teal-500 to-orange-500'>Logout</button></Link>
                     </div> : <div className='flex items-center gap-2'>
                         <Link to='/login'><button className='btn text-white bg-gradient-to-l from-purple-500 to-pink-500 hover:from-teal-500 hover:to-orange-500'>Login</button></Link>

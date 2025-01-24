@@ -82,7 +82,7 @@ const AddArticle = () => {
       </Helmet>
       <section className=' p-2 md:p-6 mx-auto w-[850px] bg-gray-600 text-white rounded-md shadow-md '>
         <h2 className='text-4xl text-center font-bold text-white  capitalize '>
-          Post a New Job
+          Post a New Article
         </h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className='lg:w-[700px] mx-auto'>

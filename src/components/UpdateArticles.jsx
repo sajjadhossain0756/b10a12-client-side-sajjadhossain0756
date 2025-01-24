@@ -57,12 +57,12 @@ const UpdateArticles = () => {
             const articleData = await axiosPublic.put(`/all_articles/${_id}`, newsInfo)
                 .then(articleData => {
                     console.log(articleData.data)
-                    if (articleData.data.insertedId) {
+                    if (articleData.data.modifiedCount) {
                         reset()
                         Swal.fire({
                             position: "top-end",
                             icon: "success",
-                            title: "Sucessfully Articale Added",
+                            title: "Sucessfully Articale Updated",
                             showConfirmButton: false,
                             timer: 1500
                         });
