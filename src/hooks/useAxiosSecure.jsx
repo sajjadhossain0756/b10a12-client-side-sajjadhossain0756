@@ -17,10 +17,11 @@ const useAxiosSecure = () => {
         return config;
     }, function (error) {
         // Do something with request error
-        return Promise.reject(error);
-        // console.log('Error',error)
+        // return Promise.reject(error);
+        signOutUser()
+        navigate('/login')
     })
-    axios.interceptors.response.use(async(response) => {
+    axios.interceptors.response.use(async (response) => {
         return response;
     }, async (error) => {
         console.log(error.response)
@@ -31,7 +32,7 @@ const useAxiosSecure = () => {
             try {
                 await signOutUser()
                 navigate('/login')
-            }catch(error){
+            } catch (error) {
                 console.error('Error during sign-out:', logoutError);
             }
         }

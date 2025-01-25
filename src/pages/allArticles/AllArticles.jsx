@@ -5,13 +5,13 @@ import useAxiosSecure from '../../hooks/useAxiosSecure'
 import useAxiosPublic from '../../hooks/useAxiosPublic'
 
 const AllArticles = () => {
-  const [article,setArticle] = useState([])
+  const [article, setArticle] = useState([])
   const axiosSecure = useAxiosSecure()
-  const [search,setSearch] = useState('')
+  const [search, setSearch] = useState('')
   const axiosPublic = useAxiosPublic()
   const navigate = useNavigate()
 
-  useEffect(()=>{
+  useEffect(() => {
     try {
       axiosPublic.get(`/all_articles?search=${search}`)
         .then(res => {
@@ -22,7 +22,7 @@ const AllArticles = () => {
       Swal.fire('Error', err.message)
 
     }
-  },[search])
+  }, [search])
 
   const filterApprovedArticles = article && article.filter(article => article?.status === 'approved' && article?.isPremium === false)
   const filterPremiumArticles = article && article.filter(article => article?.isPremium === true && article?.status !== 'declined')
@@ -40,9 +40,9 @@ const AllArticles = () => {
             timer: 1500
           });
         }
-      }).catch(error =>{
-           console.log('Error in view count',error.message)
-           navigate('/login')
+      }).catch(error => {
+        console.log('Error in view count', error.message)
+        navigate('/login')
       })
   }
   const showSubscribeMassage = (e) => {

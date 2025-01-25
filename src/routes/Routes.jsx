@@ -17,6 +17,7 @@ import AdminRoute from './AdminRoute'
 import ArticlesDetail from '../components/ArticlesDetail'
 import UpdateArticles from '../components/UpdateArticles'
 import MyProfile from '../pages/myProfile/MyProfile'
+import PremiumArticle from '../pages/premiumArticle/PremiumArticle'
 
 export const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
             {
                 path: '/my-articles',
                 element: <MyArticles></MyArticles>
+            },
+            {
+                path: '/premium-articles',
+                element: <PremiumArticle></PremiumArticle>
             },
             {
                 path: '/my-profile',
