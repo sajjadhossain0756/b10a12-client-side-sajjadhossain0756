@@ -6,14 +6,16 @@ import useAxiosPublic from '../../hooks/useAxiosPublic'
 
 const AllArticles = () => {
   const [article, setArticle] = useState([])
-  const axiosSecure = useAxiosSecure()
   const [search, setSearch] = useState('')
+  const [publisher,setPublisher] = useState('')
+
+  const axiosSecure = useAxiosSecure()
   const axiosPublic = useAxiosPublic()
   const navigate = useNavigate()
 
   useEffect(() => {
     try {
-      axiosPublic.get(`/all_articles?search=${search}`)
+      axiosPublic.get(`/all_articles?search=${search}&publisher=${publisher}`)
         .then(res => {
           console.log(res.data)
           setArticle(res.data)
@@ -22,7 +24,7 @@ const AllArticles = () => {
       Swal.fire('Error', err.message)
 
     }
-  }, [search])
+  }, [search,publisher])
 
   const filterApprovedArticles = article && article.filter(article => article?.status === 'approved' && article?.isPremium === false)
   const filterPremiumArticles = article && article.filter(article => article?.isPremium === true && article?.status !== 'declined')
@@ -57,21 +59,35 @@ const AllArticles = () => {
       })
     }
   }
-
+  console.log(publisher)
   const subscription = true;
   return (
     <div>
-      <form className='text-center'>
-        <input
-          type="text"
-          placeholder="Search By Title Name"
-          onChange={e => { setSearch(e.target.value) }}
-          className="input input-bordered input-primary w-full max-w-xs mt-4" />
-      </form>
-      <div className='grid grid-cols-3 gap-4 my-6'>
+      <div className='flex gap-2 items-center justify-center mt-4'>
+        <select 
+        name='publisher' 
+        id='publisher' 
+        className="select select-primary "
+        onChange={e => setPublisher(e.target.value)}
+        >
+          <option disabled selected value=''>Filter By Publisher</option>
+          <option value='google'>google</option>
+          <option value='facebook'>facebook</option>
+          <option value='Protom Alo'>Protom Alo</option>
+          <option value='youtube'>youtube</option>
+        </select>
+        <div>
+          <input
+            type="text"
+            placeholder="Search By Title Name"
+            onChange={e => { setSearch(e.target.value) }}
+            className="input input-bordered input-primary " />
+        </div>
+      </div>
+      <div className='grid grid-cols-1 lg:grid-cols-3 gap-4 my-6'>
         {filterApprovedArticles && filterApprovedArticles.map(article =>
           <div className="card bg-gradient-to-t from-indigo-400 from-10% 
-        via-teal-400 via-40% to-emerald-400 to-50% shadow rounded-lg">
+        via-teal-400 via-40% to-emerald-400 to-50% shadow rounded-lg p-4">
             <figure className="p-4">
               <img
                 src={article?.image}
@@ -81,7 +97,8 @@ const AllArticles = () => {
             <div className="p-4 space-y-3">
               <h2 className="card-title">{article?.title}</h2>
               <p className='font-semibold'>Publisher: {article?.category}</p>
-              <p>{article?.description.substring(0, 70)}</p>
+              <p className='font-semibold'>Tags: {article?.tags.map((tag,indx) => <span key={indx}>{tag.value}</span>)}</p>
+              <p >{article?.description.substring(0, 70)}</p>
               <div className="">
                 <Link to={`/all-articles/${article?._id}`}><button onClick={() => handleDetailButton(article?._id)} className="btn w-full bg-gradient-to-r hover:from-purple-400 
               hover:to-blue-500 from-teal-400 to-orange-500 ">Details</button></Link>
@@ -106,6 +123,7 @@ const AllArticles = () => {
                 <p className='font-semibold'>Publisher: {article?.category}</p>
                 <p className="badge badge-secondary">Premium</p>
               </div>
+              <p className='font-semibold'>Tags: {article?.tags.map((tag,indx) => <span key={indx}>{tag.value}</span>)}</p>
               <p>{article?.description.substring(0, 50)}</p>
               <div>
                 <Link

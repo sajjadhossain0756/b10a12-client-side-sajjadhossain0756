@@ -127,7 +127,7 @@ const AddArticle = () => {
                 id='category'
                 className='border bg-white text-gray-700 p-2 rounded-md'
               >
-                <option disabled value='default'>Select A Category</option>
+                <option value='default'>Select A Category</option>
                 {publisher.map((item, indx) => {
                   return <option key={indx} value={item.publisher}>{item.publisher}</option>
                 })}

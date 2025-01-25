@@ -54,7 +54,7 @@ const UpdateArticles = () => {
                 isPremium: false,
             }
             console.log(newsInfo)
-            const articleData = await axiosPublic.put(`/all_articles/${_id}`, newsInfo)
+            const articleData = await axiosSecure.put(`/all_articles/${_id}`, newsInfo)
                 .then(articleData => {
                     console.log(articleData.data)
                     if (articleData.data.modifiedCount) {
