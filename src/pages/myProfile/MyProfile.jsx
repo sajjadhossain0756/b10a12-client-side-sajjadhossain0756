@@ -39,7 +39,7 @@ const MyProfile = () => {
     }
     return (
         <div className='text-center flex flex-col justify-centers items-center gap-2 bg-pink-300 w-[500px] mx-auto mt-4 p-4 rounded'>
-            <h1 className='text-3xl text-center mb-4'>My Profile</h1>
+            <h1 className='text-3xl text-center mb-4 font-semibold'>Welcome To {user?.displayName}</h1>
             <img src={user?.photoURL} alt="profile" className='rounded-full h-20 w-20' />
             <p className='text-xl font-semibold'>Name: {user?.displayName}</p>
             <p className='text-xl font-semibold'>Email: {user?.email}</p>
