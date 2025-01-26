@@ -46,7 +46,8 @@ const AddArticle = () => {
         tags: data.tags,
         status: 'pending',
         isPremium: false,
-        postedDate: new Date().toISOString()
+        postedDate: new Date().toISOString(),
+        view_count: 0
       }
       console.log(newsInfo)
       const articleData = await axiosPublic.post(`/all_articles`, newsInfo)

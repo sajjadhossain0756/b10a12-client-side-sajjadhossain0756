@@ -3,9 +3,11 @@ import { Link, useLoaderData, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 import useAxiosPublic from '../../hooks/useAxiosPublic'
+import useArticleData from '../../hooks/useArticleData'
 
 const AllArticles = () => {
   const {articles:totalArticles} = useLoaderData()
+  const [refetch] = useArticleData()
   const [article, setArticle] = useState([])
   const [search, setSearch] = useState('')
   const [publisher,setPublisher] = useState('')
@@ -42,7 +44,7 @@ const AllArticles = () => {
     axiosSecure.patch(`/all_articles/view_count/${id}`)
       .then(res => {
         if (res.data.modifiedCount > 0) {
-          refetch()
+          // refetch()
           Swal.fire({
             position: "top-end",
             icon: "success",
