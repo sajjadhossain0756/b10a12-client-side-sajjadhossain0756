@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLoaderData, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 import useAxiosPublic from '../../hooks/useAxiosPublic'
 
 const AllArticles = () => {
+  const {articles:totalArticles} = useLoaderData()
   const [article, setArticle] = useState([])
   const [search, setSearch] = useState('')
   const [publisher,setPublisher] = useState('')
+  const [currentPage,setCurrentPage] = useState(0)
+  const articlePerPage = 6;
+  const numberOfPage = Math.ceil(totalArticles/articlePerPage)
+
+  const pages = [...Array(numberOfPage).keys()]
+
+  
+  console.log(totalArticles,numberOfPage,pages,currentPage)
 
   const axiosSecure = useAxiosSecure()
   const axiosPublic = useAxiosPublic()
@@ -15,7 +24,7 @@ const AllArticles = () => {
 
   useEffect(() => {
     try {
-      axiosPublic.get(`/all_articles?search=${search}&publisher=${publisher}`)
+      axiosPublic.get(`/all_articles?search=${search}&publisher=${publisher}&page=${currentPage}&size=${articlePerPage}`)
         .then(res => {
           console.log(res.data)
           setArticle(res.data)
@@ -24,7 +33,7 @@ const AllArticles = () => {
       Swal.fire('Error', err.message)
 
     }
-  }, [search,publisher])
+  }, [search,publisher,currentPage,articlePerPage])
 
   const filterApprovedArticles = article && article.filter(article => article?.status === 'approved' && article?.isPremium === false)
   const filterPremiumArticles = article && article.filter(article => article?.isPremium === true && article?.status !== 'declined')
@@ -84,6 +93,8 @@ const AllArticles = () => {
             className="input input-bordered input-primary " />
         </div>
       </div>
+
+      {/* card section start here */}
       <div className='grid grid-cols-1 lg:grid-cols-3 gap-4 my-6'>
         {filterApprovedArticles && filterApprovedArticles.map(article =>
           <div className="card bg-gradient-to-t from-indigo-400 from-10% 
@@ -138,6 +149,17 @@ const AllArticles = () => {
             </div>
 
           </div>)}
+      </div>
+
+      {/* pagination section start here */}
+      <div className='flex justify-center gap-2'>
+          <p onClick={()=>{if(currentPage > 0){setCurrentPage(currentPage - 1)}}} className="btn">Prev</p>
+          {pages?.map((page,indx) => 
+          <span key={indx} 
+          className={`btn ${currentPage === page ? 'bg-orange-400' : undefined}`} 
+          onClick={()=>setCurrentPage(page)}
+          >{page}</span>)}
+          <p onClick={()=>{if(currentPage < pages.length - 1){setCurrentPage(currentPage + 1)}}} className="btn">Next</p>
       </div>
     </div>
   )
