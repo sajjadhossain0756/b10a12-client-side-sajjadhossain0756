@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { FaShoppingCart } from 'react-icons/fa'
+import { FaBook, FaList, FaShoppingCart, FaUser } from 'react-icons/fa'
 import { Link, NavLink } from 'react-router-dom'
 import { AuthContext } from '../../provider/AuthProvider'
 import profileImg from '../../assets/profile.png'
@@ -34,7 +34,29 @@ const Navbar = () => {
         <li><NavLink to='/all-articles'>All Articles</NavLink></li>
         <li><NavLink to='/my-articles'>My Articles</NavLink></li>
         <li><NavLink to='/premium-articles'>Premium Articles</NavLink></li>
-        {isAdmin && <li><NavLink to='/dashboard'>Dashbord</NavLink></li>}
+        {isAdmin && <li>
+            <NavLink to='/dashboard'>Dashbord</NavLink>
+            <ul className="p-2 block md:hidden">
+                <li>
+                    <NavLink to='/dashboard/all-users'>
+                        <FaUser></FaUser>
+                        All Users
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to='/dashboard/all-articles'>
+                        <FaBook></FaBook>
+                        All Articles
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to='/dashboard/add-publisher'>
+                        <FaList></FaList>
+                        Add Publisher
+                    </NavLink>
+                </li>
+            </ul>
+        </li>}
     </>
 
     return (

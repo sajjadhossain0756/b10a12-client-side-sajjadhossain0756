@@ -63,7 +63,7 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         path: '',
-                        element: <Statistics></Statistics>,
+                        element: <AdminRoute><Statistics></Statistics></AdminRoute>,
                     },
                     {
                         path: 'all-users',

@@ -9,8 +9,8 @@ const Dashbord = () => {
 
     return (
         <div className='flex w-full gap-4 my-2'>
-            <div className='w-64 bg-orange-400'>
-                <ul className="menu">
+            <div className='w-64 bg-orange-400 hidden lg:block'>
+                <ul className="menu ">
                     {isAdmin && <>
                         <li><NavLink to='/dashboard/all-users'>
                             <FaUser></FaUser>
