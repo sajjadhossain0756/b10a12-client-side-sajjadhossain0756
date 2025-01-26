@@ -7,7 +7,6 @@ import useArticleData from '../../hooks/useArticleData'
 
 const AllArticles = () => {
   const {articles:totalArticles} = useLoaderData()
-  const [refetch] = useArticleData()
   const [article, setArticle] = useState([])
   const [search, setSearch] = useState('')
   const [publisher,setPublisher] = useState('')

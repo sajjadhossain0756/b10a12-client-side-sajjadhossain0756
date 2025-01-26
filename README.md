@@ -34,6 +34,7 @@
 
 ## react-sweetalert2
 ## react-icons
+## react-responsive-carousel 
 ## date-fns
 ## react-helmet
 ## swiper/react    

@@ -1,8 +1,9 @@
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel'
-import useAxiosPublic from '../../hooks/useAxiosPublic'
+import useAxiosPublic from '../../../hooks/useAxiosPublic'
 import { useQuery } from '@tanstack/react-query'
+import './slider.css'
 
 const Slider = () => {
     const axiosPublic = useAxiosPublic()
@@ -23,8 +24,8 @@ const Slider = () => {
 
     return (
         <div>
-            <Carousel>
-                    {trendingArticles.map(article => <div key={article._id}>
+            <Carousel autoPlay infiniteLoop showThumbs={false}>
+                    {trendingArticles.map(article => <div key={article._id} className="carousel-slide">
                         <img src={article?.image} alt='slider-image' />
                     </div>)}
             </Carousel>
