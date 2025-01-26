@@ -18,6 +18,8 @@ import ArticlesDetail from '../components/ArticlesDetail'
 import UpdateArticles from '../components/UpdateArticles'
 import MyProfile from '../pages/myProfile/MyProfile'
 import PremiumArticle from '../pages/premiumArticle/PremiumArticle'
+import Subscription from '../pages/home/Subscription'
+import Payments from '../components/Payments'
 
 export const router = createBrowserRouter([
     {
@@ -53,6 +55,14 @@ export const router = createBrowserRouter([
             {
                 path: '/premium-articles',
                 element: <PremiumArticle></PremiumArticle>
+            },
+            {
+                path: '/subscription',
+                element: <Subscription></Subscription>
+            },
+            {
+                path: '/payment',
+                element: <Payments></Payments>
             },
             {
                 path: '/my-profile',

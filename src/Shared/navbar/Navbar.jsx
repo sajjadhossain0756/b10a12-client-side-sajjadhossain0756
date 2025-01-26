@@ -34,6 +34,7 @@ const Navbar = () => {
         <li><NavLink to='/all-articles'>All Articles</NavLink></li>
         <li><NavLink to='/my-articles'>My Articles</NavLink></li>
         <li><NavLink to='/premium-articles'>Premium Articles</NavLink></li>
+        <li><NavLink to='/subscription'>Subscription</NavLink></li>
         {isAdmin && <li>
             <NavLink to='/dashboard'>Dashbord</NavLink>
             <ul className="p-2 block md:hidden">
