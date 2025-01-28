@@ -33,24 +33,24 @@ const AddPublisher = () => {
         }
         console.log(userInfo)
         axiosSecure.post(`/publisher`, userInfo)
-                  .then(res2 => {
-                    console.log(res2.data)
-                    reset()
-                    if (res2.data.insertedId) {
-                      Swal.fire({
+            .then(res2 => {
+                console.log(res2.data)
+                reset()
+                if (res2.data.insertedId) {
+                    Swal.fire({
                         position: "top-end",
                         icon: "success",
                         title: "publisher added successfully",
                         showConfirmButton: false,
                         timer: 1500
-                      });
-                    }
-                  })
+                    });
+                }
+            })
     }
     return (
         <div>
             <Helmet>
-                <title>Bistro Boss | Login</title>
+                <title>Pulse of the Nation | Add Publisher</title>
             </Helmet>
             <div className='flex items-center w-full lg:w-[500px] mt-4  mx-auto overflow-hidden flex-col
 bg-gray-100 border-2 dark:border-purple-300 dark:bg-gray-700 rounded-lg shadow-lg '>

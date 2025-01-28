@@ -39,5 +39,6 @@
 ## react-helmet
 ## swiper/react    
 ## react-router-dom
+## react-stripe-js
 ## firebase
 ## axios
