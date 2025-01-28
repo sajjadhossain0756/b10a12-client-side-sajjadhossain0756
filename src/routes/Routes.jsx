@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
             {
                 path: '/all-articles',
                 element: <AllArticles></AllArticles>,
-                loader: () => fetch(`http://localhost:7003/admin-stats`)
+                loader: () => fetch(`https://b10a12-server-side-sajjadhossain0756.vercel.app/admin-stats`)
             },
             {
                 path: '/all-articles/:id',

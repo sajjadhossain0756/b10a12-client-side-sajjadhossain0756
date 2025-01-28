@@ -2,9 +2,11 @@ import React from 'react'
 import useArticleData from '../../hooks/useArticleData'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import usePremium from '../../hooks/usePremium'
 
 const PremiumArticle = () => {
     const [articleData] = useArticleData()
+    const [isPremium] = usePremium()
 
     const filterPremiumArticles = articleData && articleData.filter(article => article?.isPremium === true && article?.status !== 'declined')
 
@@ -38,7 +40,7 @@ const PremiumArticle = () => {
             })
         }
     }
-    const subscription = false;
+    // const subscription = false;
     return (
         <div className='grid grid-cols-3 gap-4 my-6'>
             {filterPremiumArticles && filterPremiumArticles.map(article =>
@@ -61,11 +63,11 @@ const PremiumArticle = () => {
                         <p>{article?.description.substring(0, 50)}</p>
                         <div>
                             <Link
-                                to={subscription ? `/all-articles/${article?._id}` : "#"}
+                                to={isPremium ? `/all-articles/${article?._id}` : "#"}
                                 onClick={(e) => showSubscribeMassage(e)}
                             >
                                 <input onClick={() => handleDetailButton(article?._id)} className="btn disabled w-full bg-gradient-to-r from-purple-400 
-              to-blue-500 hover:from-pink-500 hover:to-orange-500 " value='Details' disabled={!subscription} />
+              to-blue-500 hover:from-pink-500 hover:to-orange-500 " value='Details' disabled={!isPremium} />
 
                             </Link>
                         </div>

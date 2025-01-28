@@ -15,8 +15,8 @@
 
      ************************     Admin Email and Password     *************************
 
-     ## Admin Email: 
-     ## Admin Password: 
+     ## Admin Email: sajjad100@gmail.com
+     ## Admin Password: Sajjad100#
 
   ########### ***************  Key-Features of this Projects  ******************* #####################
 
