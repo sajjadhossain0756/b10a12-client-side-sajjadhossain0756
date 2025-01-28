@@ -3,7 +3,7 @@ import { Link, useLoaderData, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 import useAxiosPublic from '../../hooks/useAxiosPublic'
-import useArticleData from '../../hooks/useArticleData'
+import usePremium from '../../hooks/usePremium'
 
 const AllArticles = () => {
   const {articles:totalArticles} = useLoaderData()
@@ -11,16 +11,14 @@ const AllArticles = () => {
   const [search, setSearch] = useState('')
   const [publisher,setPublisher] = useState('')
   const [currentPage,setCurrentPage] = useState(0)
-  const articlePerPage = 6;
+  const articlePerPage = 3;
   const numberOfPage = Math.ceil(totalArticles/articlePerPage)
 
   const pages = [...Array(numberOfPage).keys()]
 
-  
-  console.log(totalArticles,numberOfPage,pages,currentPage)
-
   const axiosSecure = useAxiosSecure()
   const axiosPublic = useAxiosPublic()
+  const [isPremium] = usePremium()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -70,7 +68,7 @@ const AllArticles = () => {
     }
   }
   console.log(publisher)
-  const subscription = true;
+  // const subscription = true;
   return (
     <div>
       <div className='flex gap-2 items-center justify-center mt-4'>
@@ -81,10 +79,12 @@ const AllArticles = () => {
         onChange={e => setPublisher(e.target.value)}
         >
           <option disabled selected value=''>Filter By Publisher</option>
-          <option value='google'>google</option>
-          <option value='facebook'>facebook</option>
-          <option value='Protom Alo'>Protom Alo</option>
-          <option value='youtube'>youtube</option>
+          <option value='Borer Alo'>Borer Alo</option>
+          <option value='Somoyer Songbad'>Somoyer Songbad</option>
+          <option value='Protidiner News'>Protidiner News</option>
+          <option value='The Curated Compass'>The Curated Compass</option>
+          <option value='Insight Haven'>Insight Haven</option>
+          {/* Insight Haven */}
         </select>
         <div>
           <input
@@ -139,11 +139,11 @@ const AllArticles = () => {
               <p>{article?.description.substring(0, 50)}</p>
               <div>
                 <Link
-                  to={subscription ? `/all-articles/${article?._id}` : "#"}
+                  to={isPremium ? `/all-articles/${article?._id}` : "#"}
                   onClick={(e) => showSubscribeMassage(e)}
                 >
                   <input onClick={() => handleDetailButton(article?._id)} className="btn disabled w-full bg-gradient-to-r from-purple-400 
-              to-blue-500 hover:from-pink-500 hover:to-orange-500 " value='Details' disabled={!subscription} />
+              to-blue-500 hover:from-pink-500 hover:to-orange-500 " value='Details' disabled={!isPremium} />
 
                 </Link>
               </div>

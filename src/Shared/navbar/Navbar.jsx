@@ -6,11 +6,13 @@ import profileImg from '../../assets/profile.png'
 import Swal from 'sweetalert2'
 import './navbar.module.css'
 import useAdmin from '../../hooks/useAdmin'
+import usePremium from '../../hooks/usePremium'
 
 const Navbar = () => {
     const { user, signOutUser } = useContext(AuthContext)
     const [isAdmin] = useAdmin()
-
+    const [isPremium] = usePremium()
+    
     // sign out user with firebase
     const handleSignOut = () => {
         signOutUser()
@@ -33,7 +35,7 @@ const Navbar = () => {
         <li><NavLink to='/add-article'>Add Article</NavLink></li>
         <li><NavLink to='/all-articles'>All Articles</NavLink></li>
         <li><NavLink to='/my-articles'>My Articles</NavLink></li>
-        <li><NavLink to='/premium-articles'>Premium Articles</NavLink></li>
+        {isPremium && <li><NavLink to='/premium-articles'>Premium Articles</NavLink></li>}
         <li><NavLink to='/subscription'>Subscription</NavLink></li>
         {isAdmin && <li>
             <NavLink to='/dashboard'>Dashbord</NavLink>

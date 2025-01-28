@@ -12,9 +12,10 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const options = [
-  { value: 'sports', label: 'sports' },
-  { value: 'entertainment', label: 'entertainment' },
-  { value: 'vanilla', label: 'Vanilla' }
+  { value: 'Sports', label: 'Sports' },
+  { value: 'Economy', label: 'Economy' },
+  { value: 'Openion', label: 'Openion' },
+  { value: 'Tecnology', label: 'Tecnology' }
 ]
 
 const AddArticle = () => {
@@ -95,7 +96,7 @@ const AddArticle = () => {
               </label>
               <input
                 id='title'
-                placeholder='job title'
+                placeholder='article title'
                 name='title'
                 {...register("title", { required: true })}
                 type='text'

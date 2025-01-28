@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const CheckoutForm = () => {
   const [error, setError] = useState('')
   const [clientSecret, setClientSecret] = useState('')
-  const [transactionId,setTransactionId] = useState('')
+  const [transactionId, setTransactionId] = useState('')
 
   const stripe = useStripe();
   const elements = useElements()
@@ -60,13 +61,26 @@ const CheckoutForm = () => {
       }
     })
 
-    if(confirmError){
+    if (confirmError) {
       console.log('confirm error', confirmError.message)
     }
-    else{
+    else {
       console.log('paymen intent', paymentIntent)
-      if(paymentIntent.status === 'succeeded'){
-         setTransactionId(paymentIntent.id)
+      if (paymentIntent.status === 'succeeded') {
+        axiosSecure.patch(`/all_users/premium/${user.email}`)
+        .then(res =>{
+           console.log(res.data)
+        }).catch(error =>{
+          console.log('premiumTaken Error',error.message)
+        })
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your Payment has been Successful",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        setTransactionId(paymentIntent.id)
       }
     }
   }
