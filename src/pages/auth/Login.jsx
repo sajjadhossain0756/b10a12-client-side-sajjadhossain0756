@@ -50,15 +50,15 @@ const Login = () => {
                 axiosPublic.post('/all_users', userInfo)
                     .then(res => {
                         console.log(res.data)
-                            Swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: "You are Sucessfully logged In",
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                            navigate(from)
-                        
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "You are Sucessfully logged In",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate(from)
+
                     })
 
             })
@@ -71,9 +71,9 @@ const Login = () => {
             <Helmet>
                 <title>Bistro Boss | Login</title>
             </Helmet>
-            <Link to={`/`}><button className='btn btn-outline my-6 lg:ml-32'>Back To Home</button></Link>
+            <Link to={`/`}><button className='btn btn-outline hover:bg-teal-500 my-3 lg:ml-[180px]'>Back To Home</button></Link>
             <div className='flex items-center w-full max-w-sm mx-auto overflow-hidden lg:flex-row-reverse
-bg-gray-100 border-2 dark:border-purple-300 dark:bg-gray-700 rounded-lg shadow-lg  lg:max-w-4xl p-5'>
+            bg-gradient-to-r from-purple-500 to-pink-500 text-white dark:border-purple-300 dark:bg-gray-700 rounded-lg shadow-lg  lg:max-w-4xl p-5'>
                 <div
                     className='hidden lg:block lg:w-1/2 h-full'
                 >
@@ -82,13 +82,13 @@ bg-gray-100 border-2 dark:border-purple-300 dark:bg-gray-700 rounded-lg shadow-l
 
                 <div className='w-full px-6 py-8 md:px-8 lg:w-1/2'>
 
-                    <p className='mt-3 text-xl text-center dark:text-white text-gray-600 '>
+                    <p className='mt-3 text-xl text-center text-white '>
                         Register
                     </p>
 
                     <div
 
-                        className='flex cursor-pointer items-center justify-center mt-4 dark:text-white text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '
+                        className='flex cursor-pointer items-center justify-center mt-4 text-white transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '
                     >
                         <div className='px-4 py-2'>
                             <svg className='w-6 h-6' viewBox='0 0 40 40'>
@@ -111,7 +111,7 @@ bg-gray-100 border-2 dark:border-purple-300 dark:bg-gray-700 rounded-lg shadow-l
                             </svg>
                         </div>
 
-                        <span onClick={handleGoogleSignIn} className='w-5/6 px-4 py-3 font-bold text-center'>
+                        <span onClick={handleGoogleSignIn} className='w-5/6 hover:text-black px-4 py-3 font-bold text-center'>
                             Sign in with Google
                         </span>
                     </div>
@@ -119,16 +119,21 @@ bg-gray-100 border-2 dark:border-purple-300 dark:bg-gray-700 rounded-lg shadow-l
                     <div className='flex items-center justify-between mt-4'>
                         <span className='w-1/5 border-b  lg:w-1/4'></span>
 
-                        <div className='text-xs text-center dark:text-gray-300 text-gray-500 uppercase  hover:underline'>
+                        <div className='text-xs text-center  uppercase  hover:underline'>
                             or login with email
                         </div>
 
                         <span className='w-1/5 border-b dark:border-gray-400 lg:w-1/4'></span>
                     </div>
+                    <div className='w-full mt-2'>
+                    <button className="btn w-full text-white bg-gradient-to-l from-purple-500
+                     to-pink-500 hover:from-teal-500 hover:to-orange-500" 
+                    onClick={() => document.getElementById('my_modal_3').showModal()}>Admin Login Credentials</button>
+                    </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className='mt-4'>
                             <label
-                                className='block mb-2 text-sm font-medium dark:text-white text-gray-600 '
+                                className='block mb-2 text-sm font-medium text-white '
                                 htmlFor='LoggingEmailAddress'
                             >
                                 Email Address
@@ -146,7 +151,7 @@ bg-gray-100 border-2 dark:border-purple-300 dark:bg-gray-700 rounded-lg shadow-l
                         <div className='mt-4'>
                             <div className='flex justify-between'>
                                 <label
-                                    className='block mb-2 text-sm font-medium dark:text-white text-gray-600 '
+                                    className='block mb-2 text-sm font-medium text-white '
                                     htmlFor='loggingPassword'
                                 >
                                     Password
@@ -178,7 +183,7 @@ bg-gray-100 border-2 dark:border-purple-300 dark:bg-gray-700 rounded-lg shadow-l
 
                         <Link
                             to='/signup'
-                            className='text-xs dark:text-gray-300 text-gray-500 uppercase  hover:underline'
+                            className='text-xs uppercase  hover:underline'
                         >
                             If You have no Account, Sign up
                         </Link>
@@ -187,6 +192,18 @@ bg-gray-100 border-2 dark:border-purple-300 dark:bg-gray-700 rounded-lg shadow-l
                     </div>
                 </div>
             </div>
+        
+            {/* modal for admin credential */}
+            <dialog id="my_modal_3" className="modal">
+                <div className="modal-box">
+                    <form method="dialog">
+                        {/* if there is a button in form, it will close the modal */}
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
+                    <h3 className="font-bold text-lg">sajjad100@gmail.com</h3>
+                    <p className="py-4">Sajjad100#</p>
+                </div>
+            </dialog>
         </div>
     )
 }
