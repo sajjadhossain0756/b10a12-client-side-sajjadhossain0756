@@ -13,11 +13,12 @@ const AllPublisher = () => {
         }
     })
     return (
-        <div className='bg-green-300 mt-6 rounded-lg'>
+        <div className='bg-teal-400 px-5 md:px-10'>
             <h2 className='text-4xl font-bold text-center pt-4'>Our All Publisher</h2>
-            <div className='grid grid-cols-1 md:grid-cols-3  m-6 gap-4 pb-6'>
+            <div className='grid grid-cols-1 md:grid-cols-3 mt-6  gap-4 pb-6'>
                 {publishers && publishers.map(publisher => <div key={publisher._id} 
-                className='flex gap-3 items-center bg-pink-200 p-3 rounded-md'>
+                className='flex gap-3 items-center text-white bg-gradient-to-l from-purple-500 to-pink-500
+                 hover:from-teal-500 hover:to-orange-500 p-3 rounded-md'>
                     <img src={publisher?.logo} alt="" className='h-[60px] w-[60px] rounded-full' />
                     <p className='text-2xl font-bold'>{publisher.publisher}</p>
                 </div>)}

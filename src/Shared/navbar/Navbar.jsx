@@ -63,8 +63,8 @@ const Navbar = () => {
     </>
 
     return (
-        <div className=''>
-            <div className="navbar px-5 md:px-10 bg-gradient-to-r from-teal-400 to-blue-500 text-white">
+            <div className="navbar px-5 md:px-10 bg-gradient-to-r from-teal-500 to-blue-500 text-white
+            sticky top-0 z-10 backdrop-blur-md bg-opacity-50">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -110,7 +110,6 @@ const Navbar = () => {
 
                 </div>
             </div>
-        </div>
     )
 }
 
