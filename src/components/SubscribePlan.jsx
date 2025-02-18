@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const SubscribePlan = () => {
 
   return (
-    <div className='bg-pink-400 px-5 md:p-10'>
+    <div className='bg-pink-400 dark:bg-gray-800 px-5 md:p-10'>
        <h2 className='text-4xl text-center font-bold mb-8 text-white'>To Get Premium Article Choose Your Plan</h2>
       <div className='mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
         {/* first plan */}

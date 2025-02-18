@@ -96,7 +96,7 @@ const AllArticles = () => {
       </div>
 
       {/* card section start here */}
-      <div className='grid grid-cols-1 lg:grid-cols-3 gap-4 my-6'>
+      <div className='grid grid-cols-1 lg:grid-cols-3 gap-4 my-6 px-5 md:px-10'>
         {filterApprovedArticles && filterApprovedArticles.map(article =>
           <div className="card bg-gradient-to-t from-indigo-400 from-10% 
         via-teal-400 via-40% to-emerald-400 to-50% shadow rounded-lg p-4">
