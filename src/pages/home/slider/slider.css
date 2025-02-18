@@ -11,3 +11,12 @@
     width: 100%;
     object-fit: cover;
 }
+
+/* Styles for mobile devices */
+@media screen and (max-width: 768px) {
+    .carousel-slider {
+        height: auto;
+        width: 100%;
+    }
+
+}

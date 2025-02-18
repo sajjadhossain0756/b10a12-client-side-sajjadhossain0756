@@ -15,9 +15,10 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const options = [
-    { value: 'sports', label: 'sports' },
-    { value: 'entertainment', label: 'entertainment' },
-    { value: 'vanilla', label: 'Vanilla' }
+    { value: 'Sports', label: 'Sports' },
+    { value: 'Economy', label: 'Economy' },
+    { value: 'Openion', label: 'Openion' },
+    { value: 'Tecnology', label: 'Tecnology' }
 ]
 
 const UpdateArticles = () => {
@@ -29,8 +30,8 @@ const UpdateArticles = () => {
     const [articleData] = useArticleData()
 
     const filterArticle = articleData?.find(article => article._id === id) || []
-    
-    const {_id, title, image, description, category } = filterArticle
+
+    const { _id, title, image, description, category } = filterArticle
 
     const onSubmit = async (data) => {
 

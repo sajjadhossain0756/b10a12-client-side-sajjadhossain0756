@@ -42,7 +42,7 @@ const PremiumArticle = () => {
     }
     // const subscription = false;
     return (
-        <div className='grid grid-cols-3 gap-4 my-6'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 mx-4 lg:mx-0 gap-4 my-6'>
             {filterPremiumArticles && filterPremiumArticles.map(article =>
                 <div key={article._id} className="card bg-gradient-to-t from-emerald-400 from-10% 
         via-teal-400 via-40% to-indigo-400 to-50% shadow rounded-lg">

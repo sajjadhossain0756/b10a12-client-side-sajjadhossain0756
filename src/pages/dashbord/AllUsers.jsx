@@ -5,7 +5,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure'
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure()
 
-  const { data: users = [],refetch } = useQuery({
+  const { data: users = [], refetch } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
       const res = await axiosSecure.get('all_users');
@@ -32,7 +32,7 @@ const AllUsers = () => {
   return (
     <div>
       <h2 className='text-center text-3xl font-semibold'>AllUsers: {users.length}</h2>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto hidden lg:block">
         <table className="table">
           {/* head */}
           <thead>
@@ -61,6 +61,26 @@ const AllUsers = () => {
             })}
           </tbody>
         </table>
+      </div>
+      {/* style for mobile device */}
+      <div className='block lg:hidden'>
+        {users && users.map((user, indx) => {
+          return <div key={user._id} className='bg-pink-300 m-4 rounded-lg'>
+               <div className='flex flex-col gap-2 items-center  p-4'>
+                  <img src={user?.photo} alt={user?.name} className='h-12 w-12 rounded-full' />
+                  <p className='font-semibold'>Name: {user.name}</p>
+                  <p className='font-semibold'>Email: {user.email}</p>
+                  <div>
+                    <span className='font-semibold '>Role: </span>
+                  {user.role === 'admin' ? 'Admin' : <button onClick={() => handleMakeAdmin(user)} 
+                  className='btn bg-orange-400 text-white' >
+                    Make Admin
+                  </button>}
+
+                </div>
+               </div>
+          </div>
+        })}
       </div>
     </div>
   )

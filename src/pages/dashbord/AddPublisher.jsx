@@ -48,7 +48,7 @@ const AddPublisher = () => {
             })
     }
     return (
-        <div>
+        <div className='mx-4 lg:mx-0'>
             <Helmet>
                 <title>Pulse of the Nation | Add Publisher</title>
             </Helmet>

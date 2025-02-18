@@ -92,11 +92,11 @@ const AllArticle = () => {
     });
   }
 
-  
+
   return (
     <div>
       <h2 className='text-center text-3xl font-semibold'>All Articles: {articleData?.length}</h2>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto hidden lg:block">
         <table className="table">
           {/* head */}
           <thead>
@@ -133,6 +133,28 @@ const AllArticle = () => {
             })}
           </tbody>
         </table>
+      </div>
+      {/* styles for mobile device */}
+      <div className='block lg:hidden'>
+        {articleData && articleData.map((article, indx) => {
+          return <div key={article._id} className='bg-pink-300 m-4 rounded-lg'>
+            <div className='flex flex-col gap-2 items-center  p-4'>
+              <img src={article?.authorPhoto} alt={article?.authorName} className='h-12 w-12 rounded-full' />
+              <p className='font-semibold'>Name: {article.authorName}</p>
+              <p className='font-semibold'>Email: {article.authorEmail}</p>
+              <p className='font-semibold'>Title: {article?.title.substring(0, 30)}....</p>
+              <p className='font-semibold'>Category: {article?.category}</p>
+              <p className='font-semibold'>Posted Date: {format(new Date(article?.postedDate), "PPP p")}</p>
+              <p className='font-semibold'>Status: {article?.status}</p>
+              <div className='grid grid-cols-2 gap-2'>
+                <button onClick={() => { handleApproveArticle(article) }} className='border p-1 bg-green-400 w-24'>Approve</button>
+                <button onClick={() => { handleDeclineArticle(article) }} className='border p-1 bg-red-400 w-24'>Decline</button>
+                <button onClick={() => { handlePremiumArticle(article) }} className='border p-1 bg-green-400 w-24'>Premium</button>
+                <button onClick={() => { handleDeleteArticle(article) }} className='border p-1 bg-red-400 w-24'>Delete</button>
+              </div>
+            </div>
+          </div>
+        })}
       </div>
     </div>
   )

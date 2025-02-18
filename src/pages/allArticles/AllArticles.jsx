@@ -70,12 +70,12 @@ const AllArticles = () => {
   console.log(publisher)
   // const subscription = true;
   return (
-    <div>
-      <div className='flex gap-2 items-center justify-center mt-4'>
+    <div className='mx-4 lg:mx-0'>
+      <div className='flex flex-col md:flex-row gap-2 items-center justify-center mt-4'>
         <select 
         name='publisher' 
         id='publisher' 
-        className="select select-primary "
+        className="select select-primary mx-w-sm"
         onChange={e => setPublisher(e.target.value)}
         >
           <option disabled selected value=''>Filter By Publisher</option>
@@ -91,7 +91,7 @@ const AllArticles = () => {
             type="text"
             placeholder="Search By Title Name"
             onChange={e => { setSearch(e.target.value) }}
-            className="input input-bordered input-primary " />
+            className="input input-bordered input-primary max-w-sm" />
         </div>
       </div>
 

@@ -78,7 +78,7 @@ const AddArticle = () => {
   })
 
   return (
-    <div className='flex justify-center items-center  min-h-[calc(100vh-306px)] my-12'>
+    <div className='flex justify-center items-center mx-4 lg:mx-0 min-h-[calc(100vh-306px)] my-12'>
       <Helmet>
         <title>Pulse of the Nation | Add Article</title>
       </Helmet>
@@ -108,12 +108,12 @@ const AddArticle = () => {
           <div className='grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2 items-end'>
             {/* news photo */}
             <div className='flex flex-col gap-2 '>
-              <label className="form-control text-black w-full max-w-xs">
+              <label className="form-control text-black w-full ">
                 <input
                   type="file"
                   name='photo'
                   {...register("photo", { required: true })}
-                  className="file-input file-input-bordered w-full max-w-xs"
+                  className="file-input file-input-bordered w-full "
                 />
               </label>
             </div>

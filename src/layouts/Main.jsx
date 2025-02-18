@@ -6,7 +6,7 @@ import Footer from '../Shared/Footer'
 
 const Main = () => {
     return (
-        <div className='md:w-11/12 mx-auto'>
+        <div className=''>
             <Helmet>
                 <title>Pulse of the Nation | Home</title>
             </Helmet>

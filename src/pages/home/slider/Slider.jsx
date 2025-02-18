@@ -19,7 +19,7 @@ const Slider = () => {
         return <div>Loading...</div>;
       }
 
-    const trendingArticles = [...articleData].sort((a,b) => parseInt(b.view_count) - parseInt(a.view_count) ).slice(0,4)
+    const trendingArticles = [...articleData].sort((a,b) => parseInt(b.view_count) - parseInt(a.view_count) ).slice(0,6)
     
 
     return (

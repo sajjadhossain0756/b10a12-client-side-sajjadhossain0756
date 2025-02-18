@@ -64,7 +64,7 @@ const Navbar = () => {
 
     return (
         <div className=''>
-            <div className="navbar max-w-6xl bg-gradient-to-r from-teal-400 to-blue-500 text-white">
+            <div className="navbar px-5 md:px-10 bg-gradient-to-r from-teal-400 to-blue-500 text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -87,7 +87,7 @@ const Navbar = () => {
                             {navItem}
                         </ul>
                     </div>
-                    <a className="font-bold text-xl">Pulse of the Nation</a>
+                    <Link to='/'><p className="font-bold text-xl">Pulse of the Nation</p></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 items-center">

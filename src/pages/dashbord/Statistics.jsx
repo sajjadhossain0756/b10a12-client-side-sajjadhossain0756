@@ -21,18 +21,22 @@ const Statistics = () => {
   const premiumArticles = articleData && articleData.filter(article => article?.isPremium === true && article?.status !== 'declined') || []
 
   // publication/category based article Number;
-  const google = articleData && articleData.filter(article => article.category === 'google') || []
-  const facebook = articleData && articleData.filter(article => article.category === 'facebook') || []
-  const Protom_Alo = articleData && articleData.filter(article => article.category === 'Protom Alo') || []
-  const youtube = articleData && articleData.filter(article => article.category === 'youtube') || []
+  const Borer_Alo = articleData && articleData.filter(article => article.category === 'Borer Alo') || []
+  const Somoyer_Songbad = articleData && articleData.filter(article => article.category === 'Somoyer Songbad') || []
+  const Protidiner_News = articleData && articleData.filter(article => article.category === 'Protidiner News') || []
+  const The_Curated_Compass = articleData && articleData.filter(article => article.category === 'The Curated Compass') || []
+  const Insight_Haven = articleData && articleData.filter(article => article.category === 'Insight Haven') || []
+  const Echo_Chronicles = articleData && articleData.filter(article => article.category === 'Echo Chronicles') || []
 
   // Pie chart data;
   const data = [
     ["Publisher", "Article Number"],
-    ["google", google.length],
-    ["facebook", facebook.length],
-    ["Protom Alo", Protom_Alo.length],
-    ["youtube", youtube.length],
+    ["Borer_Alo", Borer_Alo.length],
+    ["Somoyer_Songbad", Somoyer_Songbad.length],
+    ["Protidiner_News", Protidiner_News.length],
+    ["The_Curated_Compass", The_Curated_Compass.length],
+    ["Insight_Haven", Insight_Haven.length],
+    ["Echo_Chronicles", Echo_Chronicles.length],
   ];
 
   const options = {
@@ -50,7 +54,7 @@ const Statistics = () => {
 
   return (
     <div>
-      <h2 className='text-2xl font-semibold'>Hi, Welcome Back {user?.displayName}</h2>
+      <h2 className='text-2xl font-semibold text-center'>Hi, Welcome Back {user?.displayName}</h2>
 
       <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center items-center gap-4 my-6">
         <div className="stat mx-auto w-[250px] md:w-full flex flex-col items-center bg-pink-400">
