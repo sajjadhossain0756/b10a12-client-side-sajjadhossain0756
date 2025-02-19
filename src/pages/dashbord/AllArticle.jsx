@@ -95,12 +95,12 @@ const AllArticle = () => {
 
   return (
     <div>
-      <h2 className='text-center text-3xl font-semibold'>All Articles: {articleData?.length}</h2>
-      <div className="overflow-x-auto hidden lg:block">
+      <h2 className='text-center text-3xl font-semibold dark:text-white'>All Articles: {articleData?.length}</h2>
+      <div className="overflow-x-auto hidden lg:block dark:text-white">
         <table className="table">
           {/* head */}
           <thead>
-            <tr>
+            <tr className='dark:text-white'>
               <th></th>
               <th>Author Image</th>
               <th>Author Name</th>

@@ -48,13 +48,13 @@ const MyArticles = () => {
   }
 
   return (
-    <div>
-      <h2 className='text-center text-3xl font-semibold'>My Articles: {filterByEmail?.length}</h2>
-      <div className="overflow-x-auto">
+    <div className='my-10'>
+      <h2 className='text-center text-3xl mb-6 dark:text-white font-semibold'>My Articles: {filterByEmail?.length}</h2>
+      <div className="overflow-x-auto dark:text-white">
         <table className="table">
           {/* head */}
           <thead>
-            <tr>
+            <tr className='dark:text-white'>
               <th></th>
               <th>Title</th>
               <th>Status</th>

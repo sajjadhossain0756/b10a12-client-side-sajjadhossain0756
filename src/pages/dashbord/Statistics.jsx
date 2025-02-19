@@ -54,9 +54,10 @@ const Statistics = () => {
 
   return (
     <div>
-      <h2 className='text-2xl font-semibold text-center'>Hi, Welcome Back {user?.displayName}</h2>
+      <h2 className='text-2xl dark:text-white my-4 font-semibold text-center'>Hi, Welcome Back {user?.displayName}</h2>
 
-      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center items-center gap-4 my-6">
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center 
+      items-center gap-4 my-6 px-6">
         <div className="stat mx-auto w-[250px] md:w-full flex flex-col items-center bg-pink-400">
           <span><FaUsers className='text-5xl'></FaUsers></span>
           <div className="stat-title text-xl font-semibold">Total Users</div>
@@ -82,7 +83,7 @@ const Statistics = () => {
         </div>
       </div>
       <div>
-        <div>
+        <div className='px-6 dark:bg-gray-900'>
           <Chart
             chartType="PieChart"
             data={data}
@@ -91,7 +92,7 @@ const Statistics = () => {
             height={"400px"}
           />
         </div>
-        <div>
+        <div className='px-6'>
           <Chart
             chartType="ColumnChart"
             width="100%"

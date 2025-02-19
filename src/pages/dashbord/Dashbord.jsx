@@ -8,8 +8,8 @@ const Dashbord = () => {
     console.log(isAdmin)
 
     return (
-        <div className='flex w-full gap-4 my-2'>
-            <div className='w-64 bg-orange-400 hidden lg:block'>
+        <div className='flex w-full '>
+            <div className='w-64 bg-orange-400 dark:bg-gray-700 dark:text-white hidden lg:block'>
                 <ul className="menu ">
                     {isAdmin && <>
                         <li><NavLink to='/dashboard/all-users'>
@@ -26,7 +26,7 @@ const Dashbord = () => {
                         </NavLink></li>
                     </>}
                     {/* shared navbar */}
-                    <div className="divider"></div>
+                    <hr class="border-gray-300 dark:border-gray-600" />
                     <li><NavLink to='/'>
                         <FaHome></FaHome>
                         Home

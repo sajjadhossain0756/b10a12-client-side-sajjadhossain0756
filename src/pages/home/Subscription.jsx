@@ -17,7 +17,7 @@ const Subscription = () => {
                     </div>
                 </div>
             </div>
-            <div className='bg-pink-400'>
+            <div className='bg-pink-400 dark:bg-gray-800 dark:text-white'>
                 <h2 className='text-3xl text-center pt-6 font-bold'>Choose Your Plan</h2>
                 <SubscribePlan></SubscribePlan>
             </div>

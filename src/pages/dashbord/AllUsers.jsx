@@ -31,12 +31,12 @@ const AllUsers = () => {
   }
   return (
     <div>
-      <h2 className='text-center text-3xl font-semibold'>AllUsers: {users.length}</h2>
-      <div className="overflow-x-auto hidden lg:block">
+      <h2 className='text-center text-3xl font-semibold dark:text-white'>AllUsers: {users.length}</h2>
+      <div className="overflow-x-auto hidden lg:block dark:text-white">
         <table className="table">
           {/* head */}
           <thead>
-            <tr>
+            <tr className='dark:text-white'>
               <th></th>
               <th>Profile Picture</th>
               <th>Name</th>
